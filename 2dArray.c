@@ -20,9 +20,10 @@ int main()
 			printf(" Matrix[%d][%d] > ", i, j);
 			scanf(" %d", &matrix[i][j]);
 			if (matrix[i][j] > maxN)
-				maxN = matrix[i][j];
+				maxN = (matrix[i][j] < 0) ? -1*matrix[i][j] : matrix[i][j];
 		}
 	}
+	
 	int boxSize = (log(maxN)>3) ? log(maxN)+1  : 3; // dynamic bmb also boxsize must be > 3 as we do boxsize - 2 somtimes
 	// print it as is
 	printf("\nMatrix\n");
