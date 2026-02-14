@@ -49,8 +49,7 @@ int main()
                 arr[i] = arr[i + 1];
                 arr[i + 1] = tmp;
                 swaped = 1;
-                c += 1;
-                printf("%s ==> [%d %d]%s", red_bg, arr[i], arr[i + 1], reset);
+                printf("%s ==> [%d %d]%s", red_bg, arr[i+1], arr[i], reset);
             }
             // end
             printf("\n");
@@ -68,6 +67,7 @@ int main()
             }
             printf("%s\n______________\n%s", green, reset);
             usleep(250000); // 0.25 second delay
+            ++c;
         }
         printf("\n");
         --lastCheck;
