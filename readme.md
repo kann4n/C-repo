@@ -21,5 +21,15 @@
 			<img src="https://github.com/kann4n/C-repo/blob/main/screenshots/bubble-sort.png" width="400" alt="Bubble Sort Screenshot"/> 
 		</td>
 	</tr>
+	<tr>
+		<td>
+			<h3>Matrix Addition</h3>
+			<img src="https://github.com/kann4n/C-repo/blob/main/screenshots/matrixAdd.png" width="400" alt="Matrix Add Screenshot"/> 
+		</td>
+		<td>
+			<h3></h3>
+			 <!--img  -->
+		</td>
+	</tr>
 </table>
 </div>
