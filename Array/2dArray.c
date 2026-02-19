@@ -1,6 +1,19 @@
 #include <stdio.h>
 #include <math.h>
 
+void print_plus_minus(int n, int boxSize) // It prints only 1 line
+{
+	// for loop with v index is only for vish thing it is not core logic i used it mostly everywhere btw
+	for (int v = 0; v <= n * boxSize; v++) // v loop 
+	{
+		if (v % boxSize == 0)
+			printf("+");
+		else
+			printf("-");
+	}
+	printf("\n");
+}
+
 int main()
 {
 	int m, n, maxN = -999999; // m is row, n is col
@@ -11,7 +24,6 @@ int main()
 	printf("\n");
 	// make matrix and transpose matrix
 	int matrix[m][n], Tmatrix[n][m];
-
 	// read from user
 	for (int i = 0; i < m; i++)
 	{
@@ -27,15 +39,7 @@ int main()
 	int boxSize = (log(maxN)>3) ? log(maxN)+1  : 3; // dynamic bmb also boxsize must be > 3 as we do boxsize - 2 somtimes
 	// print it as is
 	printf("\nMatrix\n");
-	// for loop with v index is only for vish thing it is not core logic i used it mostly everywhere btw
-	for (int v = 0; v <= n * boxSize; v++) // v loop 1
-	{
-		if (v % boxSize == 0)
-			printf("+");
-		else
-			printf("-");
-	}
-	printf("\n");
+	print_plus_minus(n, boxSize);
 	for (int i = 0; i < m; i++) 
 	{
 		for (int j = 0; j < n; j++)
@@ -45,14 +49,7 @@ int main()
 				printf("|");
 		}
 		printf("\n");
-		for (int v = 0; v <= n * boxSize; v++) // v loop 2
-		{
-			if (v % boxSize == 0)
-				printf("+");
-			else
-				printf("-");
-		}
-		printf("\n");
+		print_plus_minus(n, boxSize);
 	}
 	// transpose it
 	// redo the store loop without scanf and printf
@@ -67,7 +64,6 @@ int main()
 	// 		2-4-6
 	// then Tarr will be 3x2
 	printf("\n\nTranspose Matrix\n");
-
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < m; j++)
@@ -77,14 +73,7 @@ int main()
 	}
 
 	// print Tarr array
-	for (int v = 0; v < m * boxSize; v++) // v loop 3
-	{
-		if (v % boxSize == 0)
-			printf("+");
-		else
-			printf("-");
-	}
-	printf("+\n");
+	print_plus_minus(m, boxSize);
 	for (int i = 0; i < n; i++)
 	{
 		for (int j = 0; j < m; j++)
@@ -94,14 +83,7 @@ int main()
 				printf("|");
 		}
 		printf("\n");
-		for (int v = 0; v <= m * boxSize; v++) // v loop 4
-		{
-			if (v % boxSize == 0)
-				printf("+");
-			else
-				printf("-");
-		}
-		printf("\n");
+		print_plus_minus(m, boxSize);
 	}
 	return 0;
 }
