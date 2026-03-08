@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <math.h>
 
-#define PI 3.14159265358979323846
+#define PI 3.141
+#define square(x) ((x) * (x))
 
 double find_distance(double x1, double y1, double x2, double y2)
 {
-    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+    return sqrt(square(x2 - x1) + square(y2 - y1));
 }
 
 double find_perimeter(double diameter)
@@ -16,12 +17,13 @@ double find_perimeter(double diameter)
 double find_area(double diameter)
 {
     double r = diameter / 2;
-    return PI * r * r;
+    return PI * square(r);
 }
 
 int main()
 {
     double x1, y1, x2, y2;
+    // assuming both points in circle and maximum distance possible.
     printf("Point 1\n");
     printf("\tEnter the x and y(seperated by space) > ");
     scanf("%lf %lf", &x1, &y1);
