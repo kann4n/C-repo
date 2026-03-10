@@ -49,7 +49,7 @@ int main()
     {
         for (int j = 0; j < n; j++)
         {
-            if (matrix[i][j] == min_row[i] && matrix[i][j] == max_col[j])
+            if (min_row[i] == max_col[j])
             {
                 printf("Saddle point found at [%d][%d] = %d\n", i, j, matrix[i][j]);
                 saddle_points++;
