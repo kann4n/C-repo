@@ -7,7 +7,7 @@ typedef struct
 {
     int rollNum;
     char name[32];
-    unsigned short marks;
+    short marks;
 } Student; // 40 bytes
 
 typedef enum {
@@ -17,19 +17,19 @@ typedef enum {
 } sortBy;
 
 void getStudentDetails(Student*);
-void sortStudents(Student*, Student*, int, unsigned int);
-void printStdDetails(Student*, unsigned int);
+void sortStudents(Student*, Student*, int, int);
+void printStdDetails(Student*, int);
 
 int main()
 {
-    unsigned int numberOfStudents;
+    int numberOfStudents;
     Student students[maxStudents] = { 0 };
     Student stdByMarks[maxStudents] = { 0 };
     Student stdByRoll[maxStudents] = { 0 };
     Student stdByName[maxStudents] = { 0 };
 
     printf("Enter the number of students: ");
-    scanf("%u", &numberOfStudents);
+    scanf("%d", &numberOfStudents);
     printf("Enter students details\n");
     for (int i = 0; i < numberOfStudents; i++)
     {
@@ -55,13 +55,20 @@ void getStudentDetails(Student* student)
 {
     printf("\tRoll Number => ");
     scanf("%d", &student->rollNum);
+    while (getchar() != '\n'); // clear input buffer
     printf("\tStudent Name => ");
-    scanf(" %[^\n]", student->name);
+    fgets(student->name, 32, stdin);
+    // Remove the newline character from the name
+    size_t len = strlen(student->name);
+    if (len > 0 && student->name[len - 1] == '\n') {
+        student->name[len - 1] = '\0';
+    }
     printf("\tMarks Obtained => ");
-    scanf("%hu", &student->marks);
+    scanf("%hd", &student->marks);
+    while (getchar() != '\n'); // clear input buffer
 }
 // sorts std1 and cpy the sorted thing to the std2 
-void sortStudents(Student* std1, Student* std2, int ByThis, unsigned int numberOfStudents)
+void sortStudents(Student* std1, Student* std2, int ByThis, int numberOfStudents)
 {
     Student stdBuffer[maxStudents];
     int swapit = 0;
@@ -81,7 +88,7 @@ void sortStudents(Student* std1, Student* std2, int ByThis, unsigned int numberO
                 if (stdBuffer[j].rollNum > stdBuffer[j + 1].rollNum) swapit = 1;
                 break;
             case markWise: // mark wise 
-                if (stdBuffer[j+1].marks > stdBuffer[j].marks) swapit = 1; // high mark = low rank
+                if (stdBuffer[j + 1].marks > stdBuffer[j].marks) swapit = 1; // high mark = low rank
                 break;
             default:
                 printf("Not vaild byThis");
@@ -99,13 +106,13 @@ void sortStudents(Student* std1, Student* std2, int ByThis, unsigned int numberO
     for (int i = 0; i < numberOfStudents; i++) std2[i] = stdBuffer[i];
 }
 // printt std details
-void printStdDetails(Student* std, unsigned int numOfstd)
+void printStdDetails(Student* std, int numOfstd)
 {
-    printf("----- | ------- | ------------------------------ | -----\n");
-    printf("index | Roll No | Name                           | Marks\n");
-    printf("----- | ------- | ------------------------------ | -----\n");
+    printf("+ ----- + ------- + ------------------------------ + ----- +\n");
+    printf("| index | Roll No | Name                           | Marks |\n");
+    printf("+ ----- + ------- + ------------------------------ + ----- +\n");
     for (int i = 0; i < numOfstd; i++)
     {
-        printf("%3d | %7d | %-30s | %d\n", i, std[i].rollNum, std[i].name, std[i].marks);
+        printf("| %5d | %7d | %-30s | %5d |\n", i, std[i].rollNum, std[i].name, std[i].marks);
     }
 }
