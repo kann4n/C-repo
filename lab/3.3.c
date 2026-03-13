@@ -27,7 +27,6 @@ double sophomores_dream()
         result += nextTerm;
         n++;
         currAcc = fabs(nextTerm / result);
-        // printf("N = %d, nextTerm = %lf, result = %lf, currAcc = %lf\n", n, nextTerm, result, currAcc);
         if (currAcc < reqAcc) break;
     }
     return result;

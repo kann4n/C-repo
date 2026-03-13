@@ -33,19 +33,17 @@ double calc_cos(double x) // where x in radians
 {
     x = fmod(x, TwoPI); // because cos repeats and can incress efficiency
     double Taylorsum = 1, xsqr = sqr(x), currAcc = 1, reqAcc = 0.0001;
-    double currTerm = 1, nextTerm = 0;
+    double currTerm = 1;
     int n = 1;
 
     while (1)
     {
-        nextTerm = (double)currTerm * -1 * xsqr / ((2 * n) * (2 * n - 1));
-        Taylorsum += nextTerm;
-        printf("N = %d\n", n);
-        currTerm = nextTerm;
-        n++;
+        currTerm *= -1 * xsqr / ((2 * n) * (2 * n - 1));
+        Taylorsum += currTerm;
+        currAcc = (currTerm / Taylorsum) > 0 ? (currTerm / Taylorsum) : -1 * (currTerm / Taylorsum);
         // stop 
-        currAcc = (nextTerm / Taylorsum) > 0 ? (nextTerm / Taylorsum) : -1 * (nextTerm / Taylorsum);
         if (Taylorsum == 0 || currAcc <= reqAcc) break;
+        n++;
         // just for extra safe
         if (n > 1000) return 0;
     }
