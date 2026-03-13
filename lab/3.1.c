@@ -16,7 +16,7 @@
 #include <math.h>
 
 #define sqr(x) ((x)*(x))
-#define TwoPI 6.28318
+#define TwoPI (2 * 3.14159265359)
 
 double calc_sin(double);
 
@@ -32,20 +32,18 @@ int main()
 double calc_sin(double x) // where x in radians
 {
     x = fmod(x, TwoPI); // because sin repeats and can incress efficiency
-    double Taylorsum = x, xsqr = sqr(x), currAcc = 1, reqAcc = 0.0001;
-    double currTerm = x, nextTerm = 0;
+    double Taylorsum = x, xsqr = sqr(x), currAcc = 1, reqAcc = 0.000001;
+    double currTerm = x;
     int n = 1;
 
     while (1)
     {
-        nextTerm = (double)currTerm * -1 * xsqr / ((2 * n) * (2 * n + 1));
-        Taylorsum += nextTerm;
-        printf("N = %d\n", n);
-        currTerm = nextTerm;
-        n++;
-        // stop 
-        currAcc = (nextTerm / Taylorsum) > 0 ? (nextTerm / Taylorsum) : -1 * (nextTerm / Taylorsum);
+        currTerm *=  -1 * xsqr / ((2 * n) * (2 * n + 1));
+        Taylorsum += currTerm;
+        currAcc = (currTerm / Taylorsum) > 0 ? (currTerm / Taylorsum) : -1 * (currTerm / Taylorsum);
         if (Taylorsum == 0 || currAcc <= reqAcc) break;
+        // stop 
+        n++;
         // just for extra safe
         if (n > 1000) return 0;
     }
