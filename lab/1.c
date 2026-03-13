@@ -36,8 +36,8 @@ int main()
     double perimeter = find_perimeter(diameter);
     double area = find_area(diameter);
 
-    printf("Diameter  = %lf\n", diameter);
-    printf("Perimeter = %lf\n", perimeter);
-    printf("Area      = %lf\n", area);
+    printf("Diameter  = %.3lf\n", diameter);
+    printf("Perimeter = %.3lf\n", perimeter);
+    printf("Area      = %.3lf\n", area);
     return 0;
 }
